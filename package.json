@@ -1,6 +1,6 @@
 {
   "name": "bst-playground",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Playground to try out algorithms around BST",
   "main": "./lib/bst.js",
   "scripts": {
