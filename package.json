@@ -1,0 +1,25 @@
+{
+  "name": "bst-playground",
+  "version": "1.0.0",
+  "description": "Playground to try out algorithms around BST",
+  "main": "./lib/bst.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sushilbaid/bst-play-ground.git"
+  },
+  "keywords": [
+    "bst"
+  ],
+  "author": "Sushil Baid <sushilbaid@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sushilbaid/bst-play-ground/issues"
+  },
+  "homepage": "https://github.com/sushilbaid/bst-play-ground",
+  "dependencies": { 
+    "chai": "2.3.0"
+  }
+}
