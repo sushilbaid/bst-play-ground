@@ -58,4 +58,31 @@ describe('bst', function()
         assert.deepEqual(i2, inorder);
         assert.deepEqual(p2, postorder);
     });
+    it('node.isbst.true', function ()
+    {
+        var validBstTrees = [
+            { inorder: [1], postorder: [1] },
+            { inorder: [1, 2, 3], postorder: [1, 3, 2] }, 
+            { inorder: [1, 2, 3, 4, 5, 6, 7], postorder: [1, 3, 2, 5, 7, 6, 4] }, // full bst
+            { inorder: [1, 2, 3, 4, 5, 6, 7, 8], postorder: [1, 3, 2, 5, 7, 6, 4, 8] }, // node (8) with only left child
+            { inorder: [0, 1, 2, 3, 4, 5, 6, 7], postorder: [1, 3, 2, 5, 7, 6, 4, 0] }, // node (0) with only right child
+        ];
+        validBstTrees.forEach(function (data)
+        {
+            assert.isTrue(bst.createTree(data.inorder, data.postorder).isBst());
+        });
+    });
+    it('node.isbst.false', function ()
+    {
+        var invalidBstTrees = [
+            { inorder: [2, 1, 3], postorder: [2, 3, 1] }, // left tree wrong
+            { inorder: [1, 3, 2], postorder: [1, 2, 3] }, // right tree wrong
+            { inorder: [1, 2, 5, 4, 6], postorder: [1, 5, 2, 6, 4] }, // node (5) placed wrong
+            { inorder: [1, 4, 2, 5, 6], postorder: [1, 2, 6, 5, 4 ] }, // node(2) placed wrong
+        ];
+        invalidBstTrees.forEach(function (data)
+        {
+            assert.isFalse(bst.createTree(data.inorder, data.postorder).isBst());
+        });
+    });
 });

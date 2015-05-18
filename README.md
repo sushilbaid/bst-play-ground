@@ -15,9 +15,10 @@ $ npm install bst-playground
 * class Node
  * visitPostOrder()
  * visitInOrder()
+ * isBst()
 
 #### createNode(value)
-returns a node with the given value. value is integer type.
+returns a node with the given value. value is number type.
 
 #### createTree(inOrder, postOrder)
 creates tree with the given inOrder and postOrder traversals - both arrays.
@@ -29,6 +30,9 @@ visits tree in in order and returns the values in an array.
 
 #### visitPostOrder()
 visits tree in post order and returns the values in an array.
+
+#### isBst()
+returns true if the subtree at this node is BST. otherwise, false.
 
 License
 -------
