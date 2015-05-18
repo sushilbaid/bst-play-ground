@@ -102,4 +102,55 @@ describe('bst', function()
                 util.format('test case failed: ', data)); 
         });
     });
+    it('node.find', function ()
+    {
+        // find should findValue in tree
+        var testData = [
+            { inorder: [1], postorder: [1], findValue: 1 }, // root only
+            { inorder: [1, 2, 3], postorder: [1, 3, 2], findValue: 1 }, 
+            { inorder: [1, 2], postorder: [1, 2], findValue: 2 },
+            { inorder: [1, 2, 3, 4, 5], postorder: [1, 2, 3, 5, 4], findValue: 3 }, // left  skewed
+            { inorder: [1, 2, 3, 4, 5], postorder: [1, 5, 4, 3, 2], findValue: 5 }, // right skewed
+            { inorder: [1, 2, 3, 4, 5, 6, 7], postorder: [1, 3, 2, 5, 7, 6, 4], findValue: 4 }, // full
+        ];
+        testData.forEach(function (data)
+        {
+            var tree = bst.createTree(data.inorder, data.postorder);
+            var findNode = tree.find(data.findValue);
+            assert.isDefined(findNode, util.format('test case failed: ', data));
+            assert.equal(findNode.value, data.findValue, util.format('test case failed: ', data)); 
+        });
+        // find should not find the given invalid values
+        testData.forEach(function (data)
+        {
+            var tree = bst.createTree(data.inorder, data.postorder);
+            var findValues = [data.inorder[0] - 1, // less than min value
+                data.inorder[data.inorder.length - 1] + 1, // max than max value 
+                data.inorder[Math.floor(data.inorder.length / 2)] + 0.1 // greater than some element in middle
+            ];
+            findValues.forEach(function (findValue)
+            {
+                assert.isUndefined(tree.find(findValue), util.format('value (%d) must be absent from tree ', findValue, tree)); 
+            });
+        });
+    });
+    it('node.depth', function ()
+    {
+        // depth of the findValue node must equal expectedDepth
+        var testData = [
+            { inorder: [1], postorder: [1], findValue: 1, expectedDepth: 0 }, // root only
+            { inorder: [1, 2, 3], postorder: [1, 3, 2], findValue: 1, expectedDepth: 1 }, 
+            { inorder: [1, 2], postorder: [1, 2], findValue: 1, expectedDepth: 1 },
+            { inorder: [1, 2, 3, 4, 5], postorder: [1, 2, 3, 5, 4], findValue: 1, expectedDepth: 3 }, // left  skewed
+            { inorder: [1, 2, 3, 4, 5], postorder: [1, 5, 4, 3, 2], findValue: 5, expectedDepth: 3 }, // right skewed
+            { inorder: [1, 2, 3, 4, 5, 6, 7], postorder: [1, 3, 2, 5, 7, 6, 4], findValue: 3, expectedDepth: 2 }, // full
+        ];
+        testData.forEach(function (data)
+        {
+            var tree = bst.createTree(data.inorder, data.postorder);
+            var findNode = tree.find(data.findValue);
+            assert.isDefined(findNode);
+            assert.equal(findNode.depth(), data.expectedDepth, util.format('test case failed: ', data)); 
+        });
+    });
 });
