@@ -29,7 +29,8 @@ return the root node of the tree.
 
 ### class Node
 #### depth()
-returns depth of a node. 
+returns depth of a node.
+from wikipedia: The depth of a node is the number of edges from the node to the tree's root node. 
 
 #### find(value)
 finds & returns node with value. otherwise, undefined.
@@ -38,7 +39,8 @@ finds & returns node with value. otherwise, undefined.
 returns true if the subtree at this node is BST. otherwise, false.
 
 #### height()
-returns height of a node. 
+returns height of a node.
+from wikipedia: The height of a node is the number of edges on the longest downward path between that node and a leaf 
 
 #### visitInOrder()
 visits tree in in order and returns the values in an array.
