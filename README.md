@@ -16,6 +16,7 @@ $ npm install bst-playground
  * visitPostOrder()
  * visitInOrder()
  * isBst()
+ * height()
 
 #### createNode(value)
 returns a node with the given value. value is number type.
@@ -33,6 +34,9 @@ visits tree in post order and returns the values in an array.
 
 #### isBst()
 returns true if the subtree at this node is BST. otherwise, false.
+
+#### height()
+returns height of a node. 
 
 License
 -------

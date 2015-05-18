@@ -1,6 +1,7 @@
 'use strict';
 var assert = require('chai').assert,
-    bst = require('..');
+    bst = require('..'),
+    util = require('util');
 
 describe('bst', function()
 {
@@ -83,6 +84,22 @@ describe('bst', function()
         invalidBstTrees.forEach(function (data)
         {
             assert.isFalse(bst.createTree(data.inorder, data.postorder).isBst());
+        });
+    });
+    it('node.height', function ()
+    {
+        var testData = [
+            { inorder: [1], postorder: [1], expectedHeight: 0 }, // root only
+            { inorder: [1, 2, 3], postorder: [1, 3, 2], expectedHeight: 1 }, 
+            { inorder: [1, 2], postorder: [1, 2], expectedHeight: 1 },
+            { inorder: [1, 2, 3, 4, 5], postorder: [1, 2, 3, 5, 4], expectedHeight: 3 }, // left  skewed
+            { inorder: [1, 2, 3, 4, 5], postorder: [1, 5, 4, 3, 2], expectedHeight: 3 }, // right skewed
+            { inorder: [1, 2, 3, 4, 5, 6, 7], postorder: [1, 3, 2, 5, 7, 6, 4], expectedHeight: 2 }, // full
+        ];
+        testData.forEach(function (data)
+        {
+            assert.equal(bst.createTree(data.inorder, data.postorder).height(), data.expectedHeight, 
+                util.format('test case failed: ', data)); 
         });
     });
 });
