@@ -17,6 +17,7 @@ $ npm install bst-playground
  * find(value)
  * height()
  * isBst()
+ * lca(values)
  * visitInOrder()
  * visitPostOrder()
 
@@ -37,6 +38,9 @@ finds & returns node with value. otherwise, undefined.
 
 #### isBst()
 returns true if the subtree at this node is BST. otherwise, false.
+
+#### lca(values)
+returns least common ancestor of the given nodes (values). If none, returns undefined.
 
 #### height()
 returns height of a node.

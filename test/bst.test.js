@@ -153,4 +153,23 @@ describe('bst', function()
             assert.equal(findNode.depth(), data.expectedDepth, util.format('test case failed: ', data)); 
         });
     });
+    it('node.lca', function ()
+    {
+        var testData = [
+            { inorder: [1], postorder: [1], values: [1], lca: -1 },
+            { inorder: [1, 2], postorder: [2, 1], values: [2], lca: 1 },
+            { inorder: [1, 2, 3], postorder: [1, 3, 2], values: [1, 3], lca: 2 },    
+            { inorder: [1, 2, 3, 4, 5], postorder: [1, 3, 2, 4, 5], values: [1, 2], lca: 4 },
+            { inorder: [1, 2, 3, 4, 5, 6], postorder: [1, 3, 2, 4, 6, 5], values: [1, 2, 6], lca: 5 },
+            { inorder: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], postorder: [1, 3, 2, 4, 7, 9, 8, 6, 5, 10], values: [1, 2, 7], lca: 5 },
+            { inorder: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], postorder: [1, 3, 2, 5, 7, 6, 4, 9, 11, 10, 8, 12], values: [1, 3, 5], lca: 4 }, // lca at depth 2
+        ];
+        testData.forEach(function (data)
+        {
+            var tree = bst.createTree(data.inorder, data.postorder);
+            var lca = tree.lca(data.values);
+            var expectedLca = data.lca == -1 ? undefined : tree.find(data.lca);
+            assert(lca === expectedLca, util.format('actual lca: %d expected lca: %d', lca ? lca.value : -1, data.lca));
+        });
+    });
 });
